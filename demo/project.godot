@@ -1,0 +1,154 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Enemy",
+"class": "AirEnemy",
+"language": "GDScript",
+"path": "res://scenes/enemies/air_enemy.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTAlwaysSucceed",
+"language": "GDScript",
+"path": "res://behavior_tree/decorator/behavior_tree_always_succeed.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTCallSimpleNodeFunction",
+"language": "GDScript",
+"path": "res://behavior_tree/leaves/bt_call_simple_func.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTCheckBlackboardProperty",
+"language": "GDScript",
+"path": "res://behavior_tree/leaves/bt_check_blackboard_prop.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTInverter",
+"language": "GDScript",
+"path": "res://behavior_tree/decorator/behavior_tree_inverter.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTLeaf",
+"language": "GDScript",
+"path": "res://behavior_tree/leaves/behavior_tree_leaf.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTSelector",
+"language": "GDScript",
+"path": "res://behavior_tree/composite/behavior_tree_selector.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTSequence",
+"language": "GDScript",
+"path": "res://behavior_tree/composite/behavior_tree_sequence.gd"
+}, {
+"base": "BehaviorTreeBaseNode",
+"class": "BTSetBlackBoardFromNodePropertyOrFunction",
+"language": "GDScript",
+"path": "res://behavior_tree/leaves/bt_set_blackboard_from_prop.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTree",
+"language": "GDScript",
+"path": "res://behavior_tree/behavior_tree.gd"
+}, {
+"base": "BehaviorTreeNode",
+"class": "BehaviorTreeBaseNode",
+"language": "GDScript",
+"path": "res://behavior_tree/behavior_tree_base_node.gd"
+}, {
+"base": "Node",
+"class": "BehaviorTreeNode",
+"language": "GDScript",
+"path": "res://behavior_tree/behavior_tree_node.gd"
+}, {
+"base": "Object",
+"class": "BehaviorTreeResult",
+"language": "GDScript",
+"path": "res://behavior_tree/behavior_tree_result.gd"
+}, {
+"base": "Node",
+"class": "BlackBoard",
+"language": "GDScript",
+"path": "res://behavior_tree/blackboard.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://scenes/enemies/enemy.gd"
+}, {
+"base": "Enemy",
+"class": "GroundEnemy",
+"language": "GDScript",
+"path": "res://scenes/enemies/ground_enemy.gd"
+}, {
+"base": "Area2D",
+"class": "PlayerDectionArea",
+"language": "GDScript",
+"path": "res://scenes/enemies/player_detection_area.gd"
+} ]
+_global_script_class_icons={
+"AirEnemy": "",
+"BTAlwaysSucceed": "res://behavior_tree/decorator/behavior_tree_always_succeed.svg",
+"BTCallSimpleNodeFunction": "",
+"BTCheckBlackboardProperty": "",
+"BTInverter": "res://behavior_tree/decorator/behavior_tree_inverter.svg",
+"BTLeaf": "res://behavior_tree/leaves/behavior_tree_leaf.svg",
+"BTSelector": "res://behavior_tree/composite/behavior_tree_selector.svg",
+"BTSequence": "res://behavior_tree/composite/behavior_tree_sequence.svg",
+"BTSetBlackBoardFromNodePropertyOrFunction": "",
+"BehaviorTree": "res://behavior_tree/behavior_tree.svg",
+"BehaviorTreeBaseNode": "",
+"BehaviorTreeNode": "",
+"BehaviorTreeResult": "",
+"BlackBoard": "res://behavior_tree/blackboard.svg",
+"Enemy": "",
+"GroundEnemy": "",
+"PlayerDectionArea": ""
+}
+
+[application]
+
+config/name="Behavior Tree Enemy AI Demo"
+run/main_scene="res://scenes/demo.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+
+[input]
+
+move_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"unicode":0,"echo":false,"script":null)
+ ]
+}
+move_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"unicode":0,"echo":false,"script":null)
+ ]
+}
+jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

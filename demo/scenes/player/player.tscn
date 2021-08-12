@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://assets/images/player/Idle/frame-2.png" type="Texture" id=1]
+[ext_resource path="res://assets/images/player/Idle/frame-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/images/player/running/frame-5.png" type="Texture" id=3]
+[ext_resource path="res://assets/images/player/running/frame-6.png" type="Texture" id=4]
+[ext_resource path="res://assets/images/player/running/frame-4.png" type="Texture" id=5]
+[ext_resource path="res://assets/images/player/running/frame-3.png" type="Texture" id=6]
+[ext_resource path="res://assets/images/player/running/frame-2.png" type="Texture" id=7]
+[ext_resource path="res://assets/images/player/Jump/Jump-up.png" type="Texture" id=8]
+[ext_resource path="res://assets/images/player/Jump/Jump-fall.png" type="Texture" id=9]
+[ext_resource path="res://assets/images/player/running/frame-1.png" type="Texture" id=10]
+[ext_resource path="res://scenes/player/player.gd" type="Script" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "idle",
+"speed": 2.5
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": false,
+"name": "jump",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 40.0929
+height = 69.111
+
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
+script = ExtResource( 13 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 1 )
+animation = "run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="GroundDetectors" type="Node2D" parent="."]
+position = Vector2( 0, 74.6436 )
+
+[node name="RayCast2D" type="RayCast2D" parent="GroundDetectors"]
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="GroundDetectors"]
+position = Vector2( -25, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCast2D3" type="RayCast2D" parent="GroundDetectors"]
+position = Vector2( 25, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )

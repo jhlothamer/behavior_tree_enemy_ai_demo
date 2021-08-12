@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=1]
+[ext_resource path="res://scenes/ui/hud.gd" type="Script" id=2]
+[ext_resource path="res://assets/fonts/kenvector_future2.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+font_data = ExtResource( 3 )
+
+[node name="Hud" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -326.0
+margin_top = -62.0
+custom_constants/margin_right = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackBtn" type="Button" parent="MarginContainer"]
+margin_right = 306.0
+margin_bottom = 42.0
+custom_fonts/font = ExtResource( 1 )
+text = "Back To Menu"
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -137.0
+margin_right = 444.0
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer2"]
+margin_left = 20.0
+margin_top = 8.0
+margin_right = 444.0
+margin_bottom = 109.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "move - wasd/arrows
+jump - space
+land on enemy kills them
+enemy will respawn"
+
+[connection signal="pressed" from="MarginContainer/BackBtn" to="." method="_on_BackBtn_pressed"]
