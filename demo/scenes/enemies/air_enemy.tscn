@@ -52,7 +52,7 @@
 [ext_resource path="res://behavior_tree/composite/behavior_tree_sequence.gd" type="Script" id=50]
 [ext_resource path="res://behavior_tree/leaves/bt_check_blackboard_prop.gd" type="Script" id=51]
 [ext_resource path="res://scenes/enemies/behavior_tree_actions/move_towards_player.gd" type="Script" id=52]
-[ext_resource path="res://scenes/enemies/turn_towards_player.gd" type="Script" id=53]
+[ext_resource path="res://scenes/enemies/behavior_tree_actions/turn_towards_player.gd" type="Script" id=53]
 [ext_resource path="res://scenes/enemies/player_detection_area.tscn" type="PackedScene" id=58]
 [ext_resource path="res://behavior_tree/leaves/bt_set_blackboard_from_prop.gd" type="Script" id=59]
 

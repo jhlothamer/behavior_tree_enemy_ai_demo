@@ -1,10 +1,22 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://assets/fonts/kenvector_future2.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/demo.gd" type="Script" id=2]
 [ext_resource path="res://assets/fonts/font_button.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scenes/demos/demo_tile_map.tscn" type="PackedScene" id=4]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.0862745, 0, 0.309804, 0.788235 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 1 )
 
@@ -13,70 +25,98 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
 __meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -261.5
-margin_top = -151.5
-margin_right = 261.5
-margin_bottom = 151.5
+[node name="TileMap" parent="." instance=ExtResource( 4 )]
+position = Vector2( 170, 103 )
+scale = Vector2( 0.667, 0.667 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.694118 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = 355.0
+margin_top = 155.0
+margin_right = 965.0
+margin_bottom = 590.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+margin_right = 606.0
+margin_bottom = 431.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+margin_left = 78.0
+margin_top = 64.0
+margin_right = 527.0
+margin_bottom = 367.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 523.0
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+margin_right = 449.0
 margin_bottom = 117.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Click below to try different demos of enemy ai implemented with behavior trees"
 align = 1
 autowrap = true
 
-[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 137.0
-margin_right = 523.0
+margin_right = 449.0
 margin_bottom = 179.0
 
-[node name="GroundEnemyDemoBtn" type="Button" parent="VBoxContainer/CenterContainer"]
-margin_left = 37.0
-margin_right = 486.0
+[node name="GroundEnemyDemoBtn" type="Button" parent="Panel/CenterContainer/VBoxContainer/CenterContainer"]
+margin_right = 449.0
 margin_bottom = 42.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 3 )
 text = "Ground Enemy Demo"
 
-[node name="CenterContainer3" type="CenterContainer" parent="VBoxContainer"]
+[node name="CenterContainer3" type="CenterContainer" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 199.0
-margin_right = 523.0
+margin_right = 449.0
 margin_bottom = 241.0
 
-[node name="AirEnemyDemoBtn" type="Button" parent="VBoxContainer/CenterContainer3"]
-margin_left = 85.0
-margin_right = 437.0
+[node name="AirEnemyDemoBtn" type="Button" parent="Panel/CenterContainer/VBoxContainer/CenterContainer3"]
+margin_left = 48.0
+margin_right = 400.0
 margin_bottom = 42.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 3 )
 text = "Air Enemy Demo"
 
-[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+[node name="CenterContainer2" type="CenterContainer" parent="Panel/CenterContainer/VBoxContainer"]
 margin_top = 261.0
-margin_right = 523.0
+margin_right = 449.0
 margin_bottom = 303.0
 
-[node name="ExitBtn" type="Button" parent="VBoxContainer/CenterContainer2"]
-margin_left = 209.0
-margin_right = 313.0
+[node name="ExitBtn" type="Button" parent="Panel/CenterContainer/VBoxContainer/CenterContainer2"]
+margin_left = 172.0
+margin_right = 276.0
 margin_bottom = 42.0
 size_flags_horizontal = 0
 custom_fonts/font = ExtResource( 3 )
 text = "Exit"
 
-[connection signal="pressed" from="VBoxContainer/CenterContainer/GroundEnemyDemoBtn" to="." method="_on_GroundEnemyDemoBtn_pressed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer3/AirEnemyDemoBtn" to="." method="_on_AirEnemyDemoBtn_pressed"]
-[connection signal="pressed" from="VBoxContainer/CenterContainer2/ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/CenterContainer/GroundEnemyDemoBtn" to="." method="_on_GroundEnemyDemoBtn_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/CenterContainer3/AirEnemyDemoBtn" to="." method="_on_AirEnemyDemoBtn_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/CenterContainer2/ExitBtn" to="." method="_on_ExitBtn_pressed"]
