@@ -5,6 +5,7 @@ extends BehaviorTreeBaseNode
 
 
 export var random := false
+export var disabled := false
 
 
 var _last_result := -1
@@ -13,6 +14,10 @@ var _last_children := []
 
 func tick(delta:float, blackboard: BlackBoard, result:BehaviorTreeResult) -> void:
 	if has_bad_children():
+		result.set_success()
+		return
+	
+	if disabled:
 		result.set_success()
 		return
 

@@ -16,8 +16,8 @@ func turn_towards_player() -> void:
 	pass
 
 
-func move_forward(_delta: float) -> void:
-	pass
+func move_forward(_delta: float) -> bool:
+	return true
 
 
 func hurt_by_player() -> void:

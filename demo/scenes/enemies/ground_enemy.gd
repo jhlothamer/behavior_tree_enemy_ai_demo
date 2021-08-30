@@ -20,9 +20,6 @@ var _velocity := Vector2.ZERO
 var _is_dying := false
 
 
-func is_colliding_with_wall() -> bool:
-	return is_on_wall()
-
 
 func turn_around() -> void:
 	_animated_sprite.flip_h = !_animated_sprite.flip_h
@@ -32,8 +29,8 @@ func move_towards_player(delta: float) -> void:
 	_move(chase_player_linear_speed)
 
 
-func move_forward(delta: float) -> void:
-	_move(linear_speed)
+func move_forward(delta: float) -> bool:
+	return _move(linear_speed)
 
 
 func idle() -> void:
@@ -85,7 +82,7 @@ func _get_player() -> Node2D:
 	return player
 
 
-func _move(speed: float) -> void:
+func _move(speed: float) -> bool:
 	_velocity.x = speed
 	
 	if _animated_sprite.flip_h:
@@ -102,6 +99,8 @@ func _move(speed: float) -> void:
 		_animated_sprite.speed_scale = speed_scale
 	
 	_velocity = move_and_slide(_velocity, Vector2.UP)
+	
+	return !is_on_wall()
 
 
 func _on_AnimatedSprite_animation_finished():

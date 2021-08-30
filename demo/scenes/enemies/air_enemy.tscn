@@ -68,6 +68,11 @@ animations = [ {
 "name": "attack",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 23 ), ExtResource( 31 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 34 ), ExtResource( 25 ), ExtResource( 44 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 10.0
+}, {
 "frames": [ ExtResource( 22 ), ExtResource( 28 ), ExtResource( 40 ), ExtResource( 41 ), ExtResource( 37 ), ExtResource( 29 ), ExtResource( 38 ), ExtResource( 39 ) ],
 "loop": false,
 "name": "dead",
@@ -76,11 +81,6 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 14 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 20 ), ExtResource( 19 ) ],
 "loop": true,
 "name": "fly",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 23 ), ExtResource( 31 ), ExtResource( 24 ), ExtResource( 26 ), ExtResource( 34 ), ExtResource( 25 ), ExtResource( 44 ), ExtResource( 43 ) ],
-"loop": true,
-"name": "hurt",
 "speed": 10.0
 } ]
 
@@ -100,7 +100,7 @@ script = ExtResource( 45 )
 scale = Vector2( 0.3, 0.3 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 6
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -124,18 +124,18 @@ blackboard = NodePath("../BlackBoard")
 [node name="BTSequence" type="Node" parent="BehaviorTree"]
 script = ExtResource( 50 )
 
-[node name="RecordIsDying" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordIsDyingToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 59 )
 node = NodePath("../../..")
 node_property_or_function_name = "is_dying"
 
-[node name="RecordPlayerIsNear" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordPlayerIsNearToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 59 )
 node = NodePath("../../../PlayerNearDetectionArea")
 node_property_or_function_name = "player_is_in_area"
 blackboard_property_name = "player_is_near"
 
-[node name="RecordPlayerIsClose" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordPlayerIsCloseToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 59 )
 node = NodePath("../../../PlayerCloseDetectionArea")
 node_property_or_function_name = "player_is_in_area"

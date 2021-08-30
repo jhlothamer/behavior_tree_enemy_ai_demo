@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://assets/images/zombie/Idle (7).png" type="Texture" id=1]
 [ext_resource path="res://assets/images/zombie/Idle (6).png" type="Texture" id=2]
@@ -51,7 +51,6 @@
 [ext_resource path="res://scenes/enemies/behavior_tree_actions/turn_towards_player.gd" type="Script" id=49]
 [ext_resource path="res://behavior_tree/composite/behavior_tree_selector.gd" type="Script" id=50]
 [ext_resource path="res://behavior_tree/composite/behavior_tree_sequence.gd" type="Script" id=51]
-[ext_resource path="res://behavior_tree/decorator/behavior_tree_always_succeed.gd" type="Script" id=52]
 [ext_resource path="res://scenes/enemies/behavior_tree_actions/idle.gd" type="Script" id=53]
 [ext_resource path="res://behavior_tree/leaves/bt_check_blackboard_prop.gd" type="Script" id=54]
 [ext_resource path="res://scenes/enemies/behavior_tree_actions/move.gd" type="Script" id=55]
@@ -100,7 +99,7 @@ position = Vector2( 0, -8.41846 )
 scale = Vector2( 0.35, 0.35 )
 frames = SubResource( 1 )
 animation = "idle"
-frame = 11
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -125,18 +124,18 @@ blackboard = NodePath("../BlackBoard")
 [node name="BTSequence" type="Node" parent="BehaviorTree"]
 script = ExtResource( 51 )
 
-[node name="RecordIsDying" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordIsDyingToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 61 )
 node = NodePath("../../..")
 node_property_or_function_name = "is_dying"
 
-[node name="RecordPlayerIsNear" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordPlayerIsNearToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 61 )
 node = NodePath("../../../PlayerNearDetectionArea")
 node_property_or_function_name = "player_is_in_area"
 blackboard_property_name = "player_is_near"
 
-[node name="RecordPlayerIsClose" type="Node" parent="BehaviorTree/BTSequence"]
+[node name="RecordPlayerIsCloseToBlackboard" type="Node" parent="BehaviorTree/BTSequence"]
 script = ExtResource( 61 )
 node = NodePath("../../../PlayerCloseDetectionArea")
 node_property_or_function_name = "player_is_in_area"
@@ -183,27 +182,7 @@ script = ExtResource( 49 )
 script = ExtResource( 58 )
 
 [node name="PatrolArea" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions"]
-script = ExtResource( 51 )
-
-[node name="TurnAroundIfNecessary" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea"]
-script = ExtResource( 52 )
-
-[node name="BTSequence" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea/TurnAroundIfNecessary"]
-script = ExtResource( 51 )
-
-[node name="RecordIsCollidingWithWall" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea/TurnAroundIfNecessary/BTSequence"]
-script = ExtResource( 61 )
-node = NodePath("../../../../../../..")
-node_property_or_function_name = "is_colliding_with_wall"
-
-[node name="CheckIsCollidingWithWall" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea/TurnAroundIfNecessary/BTSequence"]
-script = ExtResource( 54 )
-blackboard_property_name = "is_colliding_with_wall"
-
-[node name="TurnAround" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea/TurnAroundIfNecessary/BTSequence"]
-script = ExtResource( 60 )
-node = NodePath("../../../../../../..")
-node_function_name = "turn_around"
+script = ExtResource( 50 )
 
 [node name="MoveOrIdle" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea"]
 script = ExtResource( 50 )
@@ -213,6 +192,11 @@ script = ExtResource( 53 )
 
 [node name="Move" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea/MoveOrIdle"]
 script = ExtResource( 55 )
+
+[node name="TurnAround" type="Node" parent="BehaviorTree/BTSequence/DoOneOfTheseActions/PatrolArea"]
+script = ExtResource( 60 )
+node = NodePath("../../../../..")
+node_function_name = "turn_around"
 
 [node name="BlackBoard" type="Node" parent="."]
 script = ExtResource( 47 )
