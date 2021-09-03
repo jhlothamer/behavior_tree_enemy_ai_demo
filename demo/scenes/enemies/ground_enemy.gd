@@ -34,7 +34,7 @@ func move_forward(delta: float) -> bool:
 
 
 func idle() -> void:
-		if _animated_sprite.animation != "idle":
+		if _animated_sprite.animation != "idle" or !_animated_sprite.playing:
 			_animated_sprite.speed_scale = 1.0
 			_animated_sprite.play("idle")
 

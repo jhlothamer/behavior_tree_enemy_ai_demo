@@ -1,5 +1,5 @@
 # Behavior Tree Enemy AI Demo
-This is a demo of platformer enemy AI implemented using behavior trees.
+This is a demo of platformer enemy AI implemented using behavior trees in the Godot Engine.
 
 
 ## Credits

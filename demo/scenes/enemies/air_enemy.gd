@@ -11,8 +11,9 @@ onready var _player_near_area: PlayerDectionArea = $PlayerNearDetectionArea
 var _is_dying := false
 
 
+
 func idle():
-	if _animated_sprite.animation != "idle":
+	if _animated_sprite.animation != "idle" or !_animated_sprite.playing:
 		_animated_sprite.play("idle")
 
 
