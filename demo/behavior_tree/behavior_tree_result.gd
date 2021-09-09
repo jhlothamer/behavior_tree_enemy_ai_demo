@@ -1,7 +1,7 @@
 # Results of behavior tree processing.  Holds reference to BT node that
 # returned RUNNING.
 class_name BehaviorTreeResult
-extends Object
+extends Reference
 
 
 enum Result {

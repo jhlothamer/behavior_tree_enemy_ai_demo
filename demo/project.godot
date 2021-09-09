@@ -69,7 +69,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://behavior_tree/behavior_tree_node.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "BehaviorTreeResult",
 "language": "GDScript",
 "path": "res://behavior_tree/behavior_tree_result.gd"
